@@ -78,7 +78,11 @@ header {
 
 .category-card:hover {
   transform: translateY(-4px);
-  background-color: #4b1595;
+  background-color: #100530;
+}
+.category-card.selected{
+  background-color: #00063f;
+  transform: translateY(-4px);
 }
 
 /* BUTTON */
@@ -92,9 +96,12 @@ button {
   cursor: pointer;
 }
 button:hover{
-  background-color: #4b1595;
+  background-color: #100530;
   transform: translateY(-4px);
 }
+
+/* Quiz*/
+
 
 /* FOOTER */
 .footer {
