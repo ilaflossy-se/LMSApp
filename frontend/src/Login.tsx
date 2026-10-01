@@ -23,8 +23,8 @@ const Login: React.FC = () => {
       <div className="login-card">
         <h2>LogIn</h2>
         <input className = "text-input"type="text" placeholder="Username" />
-        <input className = "text-input" type="text" placeholder="Password" />
-        <button className = "button-login" onClick={() => navigate("/dashboard")}>
+        <input className = "text-input" type="password" placeholder="Password" />
+        <button className = "button-login" onClick={() => navigate("/home")}>
           LogIn
         </button>
       </div>

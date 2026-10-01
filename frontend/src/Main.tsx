@@ -1,11 +1,16 @@
+
 import React, { useState } from 'react';
 import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 
-function Dashboard() {
+import Home from './Home';
+
+function Main() {
   const [collapsed, setCollapsed] = useState(false);
+  const navigate = useNavigate();
 
   return (
-    <div className="dashboard-container">
+    <div className="main-container">
 
       {/* SIDEBAR */}
       <Sidebar
@@ -15,57 +20,75 @@ function Dashboard() {
         transitionDuration={300}
         className="sidebar"
       >
+
         <Menu>
 
-          {/* Кнопка открытия/закрытия */}
+          {/* MENU BUTTON */}
           <MenuItem
             onClick={() => setCollapsed(!collapsed)}
             className="sidebar-header"
           >
             ☰
-            {!collapsed && <span className="logo-text"> Quiz App</span>}
+            {!collapsed && (
+              <span className="logo-text">
+                Quiz App
+              </span>
+            )}
           </MenuItem>
 
-          {/* Главная */}
-          <MenuItem onClick={() => alert('Home')}>
+
+          {/* HOME */}
+          <MenuItem onClick={() => navigate('/home')}>
             Home
           </MenuItem>
 
-          {/* Components */}
+
+          {/* COMPONENTS */}
           <SubMenu label="Components">
-            <MenuItem onClick={() => alert('Component 1')}>
+
+            <MenuItem>
               Component 1
             </MenuItem>
 
-            <MenuItem onClick={() => alert('Component 2')}>
+            <MenuItem>
               Component 2
             </MenuItem>
+
           </SubMenu>
 
-          {/* Профиль */}
-          <MenuItem onClick={() => alert('Profile')}>
+
+          {/* PROFILE */}
+          <MenuItem>
             Profile
           </MenuItem>
 
-          {/* Настройки */}
-          <MenuItem onClick={() => alert('Settings')}>
+
+          {/* SETTINGS */}
+          <MenuItem>
             Settings
           </MenuItem>
 
         </Menu>
+
       </Sidebar>
 
-      {/* MAIN CONTENT */}
-      <main className="main">
-        <h1>Welcome to Your App</h1>
 
-        <p>
-          This is the main content area.
-        </p>
+      {/* CONTENT */}
+      <main className="main">
+
+        <Routes>
+
+          <Route
+            path="/home"
+            element={<Home />}
+          />
+
+        </Routes>
+
       </main>
 
     </div>
   );
 }
 
-export default Dashboard;
+export default Main;
