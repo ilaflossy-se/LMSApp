@@ -59,16 +59,12 @@ body {
 ========================= */
 
 footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
-  color: white;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #f1f1f1;
   text-align: center;
   padding: 10px;
-  width: 100%;
-  position: relative;
-  bottom: 0;
 }
 
 
@@ -78,8 +74,6 @@ footer {
 
 .sidebar {
   height: 100vh;
-  position: sticky;
-  top: 0;
 }
 
 .sidebar-header {
@@ -87,31 +81,70 @@ footer {
   font-size: 18px;
   font-weight: bold;
 }
+```css
+/* Обычный пункт */
+.sidebar .ps-menu-button {
+  font-weight: 500;
+  transition: 0.2s ease;
+}
+
+/* Активный пункт */
+.sidebar .ps-menu-button.ps-active {
+  background-color: #380d74;
+  color: white;
+  font-weight: bold;
+}
+
+/* При наведении */
+.sidebar .ps-menu-button:hover {
+  background-color: #5a20a0;
+  color: rgb(0, 0, 0);
+}
 
 
 /* =========================
    MAIN
 ========================= */
 
-.main {
+.main-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+
+/* Правая часть */
+.content-container {
   flex: 1;
   min-width: 0;
 
   display: flex;
   flex-direction: column;
 
-  height: 100vh;
+  min-height: 100vh;
 }
 
+
+/* Контент */
+.main {
+    flex: 1;
+    min-width: 0;
+
+    padding: 35px;
+
+    background: #f7f6fa;
+    overflow-y: auto;
+}
+
+
+/* Footer */
 
 /* =========================
    CONTENT
 ========================= */
 
 .main-content {
-  flex: 1;
-  padding: 30px;
   height: 100vh;
+  padding: 20px;
 }
 
 .main h1 {
@@ -127,8 +160,288 @@ footer {
    DASHBOARD
 ========================= */
 
-.main-container {
-  display: flex;
-  min-height: 100vh;
+.dashboard {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
+
+/* HEADER */
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.dashboard-header h1 {
+    font-size: 32px;
+    color: #1d1535;
+    margin-bottom: 6px;
+}
+
+.dashboard-header p {
+    color: #777;
+}
+
+.date {
+    color: #777;
+    font-size: 14px;
+}
+
+
+/* TOP GRID */
+
+.top-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+
+/* CARD */
+
+.dashboard-card {
+    background: white;
+    border-radius: 16px;
+    padding: 22px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.card-header h2 {
+    font-size: 19px;
+    color: #1d1535;
+}
+
+.card-header button,
+.section-header button {
+    border: none;
+    background: none;
+    color: #380d74;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+
+/* DEADLINES */
+
+.deadline-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 15px;
+
+    border: 1px solid #eee;
+    border-radius: 12px;
+
+    margin-bottom: 10px;
+}
+
+.deadline-item h3 {
+    font-size: 15px;
+    margin-bottom: 4px;
+}
+
+.deadline-item p {
+    font-size: 13px;
+    color: #888;
+}
+
+.deadline-item span {
+    font-size: 13px;
+    font-weight: bold;
+    color: #777;
+}
+
+.deadline-item.urgent {
+    border-left: 4px solid #e5625e;
+    background: #fff7f6;
+}
+
+.deadline-item.urgent span {
+    color: #e5625e;
+}
+
+
+/* SCHEDULE */
+
+.schedule-item {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    padding: 14px 0;
+
+    border-bottom: 1px solid #eee;
+}
+
+.schedule-item:last-child {
+    border-bottom: none;
+}
+
+.time {
+    color: #380d74;
+    font-weight: bold;
+    min-width: 50px;
+}
+
+.schedule-item h3 {
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.schedule-item p {
+    font-size: 12px;
+    color: #888;
+}
+
+
+/* COURSES */
+
+.courses-section {
+    margin-bottom: 30px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 15px;
+}
+
+.section-header h2 {
+    color: #1d1535;
+}
+
+
+.courses-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+
+.new-course-card {
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+
+    transition: 0.2s;
+}
+
+.new-course-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 7px 20px rgba(0, 0, 0, 0.1);
+}
+
+
+.course-icon {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 10px;
+
+    background: #380d74;
+    color: white;
+
+    font-weight: bold;
+
+    margin-bottom: 15px;
+}
+
+.new-course-card h3 {
+    color: #1d1535;
+    margin-bottom: 6px;
+}
+
+.new-course-card p {
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 15px;
+}
+
+
+/* PROGRESS */
+
+.progress {
+    width: 100%;
+    height: 7px;
+
+    background: #eee;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+
+    margin-bottom: 7px;
+}
+
+.progress-bar {
+    height: 100%;
+    background: #380d74;
+    border-radius: 10px;
+}
+
+.new-course-card span {
+    font-size: 12px;
+    color: #777;
+}
+
+
+/* QUICK ACTIONS */
+
+.quick-actions {
+    background: white;
+    padding: 22px;
+    border-radius: 16px;
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+}
+
+.quick-actions h2 {
+    font-size: 19px;
+    margin-bottom: 15px;
+    color: #1d1535;
+}
+
+.actions-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+.actions-grid button {
+    padding: 14px;
+
+    border: 1px solid #eee;
+    border-radius: 10px;
+
+    background: white;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.actions-grid button:hover {
+    background: #f4effb;
+    border-color: #380d74;
+}
