@@ -1,54 +1,31 @@
-import { useEffect, useState } from "react";
-
-interface User {
-    name: string;
-}
-
-interface ProfileData {
-    user: User;
-}
+import { useNavigate } from "react-router-dom";
+import { User, useApi } from "./api";
+import Status from "./Status";
 
 function Profile() {
+  const { data, error, loading, reload } = useApi<User>("/profile");
+  const navigate = useNavigate();
 
-    const [data, setData] = useState<ProfileData | null>(null);
+  if (!data) return <Status loading={loading} error={error} onRetry={reload} />;
 
-    useEffect(() => {
+  const logout = () => {
+    localStorage.removeItem("token");
+    navigate("/login");
+  };
 
-        fetch("http://127.0.0.1:5000/api/profile")
-            .then(response => response.json())
-            .then(result => {
-                setData(result);
-            })
-            .catch(error => {
-                console.error(error);
-            });
-
-    }, []);
-
-    if (!data) {
-        return <p>Loading...</p>;
-    }
-
-    return (
-        <div className="profile">
-
-            <h1>Profile</h1>
-
-            <div className="profile-card">
-
-                <div className="profile-avatar">
-                    {data.user.name[0]}
-                </div>
-
-                <div>
-                    <h2>{data.user.name}</h2>
-                    <p>AITU Student</p>
-                </div>
-
-            </div>
-
+  return (
+    <div className="dashboard">
+      <div className="page-header"><h1>Profile</h1></div>
+      <div className="dashboard-card profile-card">
+        <div className="profile-avatar">{data.name[0]}</div>
+        <div>
+          <h2>{data.name}</h2>
+          <p>{data.role}</p>
         </div>
-    );
+        <button className="btn secondary" onClick={logout}>Log out</button>
+      </div>
+    </div>
+  );
 }
 
 export default Profile;
